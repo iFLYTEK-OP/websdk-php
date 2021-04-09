@@ -1,0 +1,21 @@
+# vendor
+vendor/
+
+# phplint-cache
+.phplint-cache
+
+# composer
+composer.lock
+
+# tests
+credentials.yml
+tests/output
+tests/input
+coverageOutput
+clover.xml
+
+# vscode
+.vscode/
+
+# macos
+.DS_Store
