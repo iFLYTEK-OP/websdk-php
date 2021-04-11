@@ -7,7 +7,7 @@ use Symfony\Component\Yaml\Yaml;
 
 class BaseClientTest extends TestCase
 {
-    protected $ability;
+    protected $ability = 'tts';
 
     protected $config;
 
@@ -26,5 +26,9 @@ class BaseClientTest extends TestCase
             ]
         ];
         $this->config = $credentials[$this->ability];
+    }
+
+    public function testSuccessGetEnv() {
+        $this->assertNotNull($this->config['appId']);
     }
 }
