@@ -134,7 +134,7 @@ class LfasrClient
 
         $request = new Request(
             'POST',
-            LfasrConstants::URI_UPLOAD,
+            LfasrConstants::URI_UPLOAD
         );
 
         for ($i = 0; $i < $sliceInfo['slice_num']; $i++) {
