@@ -10,7 +10,6 @@ composer.lock
 # tests
 credentials.yml
 tests/output
-tests/input
 coverageOutput
 clover.xml
 
