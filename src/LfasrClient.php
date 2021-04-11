@@ -48,7 +48,7 @@ class LfasrClient
     protected $appId;
 
     /**
-     * @var string secretKey
+     * @var string secret_key
      */
     protected $secretKey;
 
