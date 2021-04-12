@@ -1,5 +1,5 @@
 # 讯飞开放平台AI能力-PHPSDK语音能力库
-
+[![Build Status](https://www.travis-ci.com/iFLYTEK-OP/websdk-php-speech.svg?branch=master)](https://www.travis-ci.com/iFLYTEK-OP/websdk-php-speech)
 提供各种语音能力的PHPSDK。
 
 ### 安装
