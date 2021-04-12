@@ -6,7 +6,7 @@
 
 ### 安装
 ```sh
-composer require IFlytek/Xfyun/Speech
+composer require iflytekop/xfyun-speech
 ```
 
 ### 使用
