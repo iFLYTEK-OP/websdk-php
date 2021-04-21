@@ -6,9 +6,11 @@
 
 ### 安装
 ```sh
-# 如果下载失败，请更换国内源（composer config -g repo.packagist composer https://mirrors.aliyun.com/composer/）
 composer require iflytekop/xfyun-speech
 ```
+如果下载失败，请使用如下命令更换国内源
+
+`composer config -g repo.packagist composer https://mirrors.aliyun.com/composer/`
 
 ### 使用
 #### 语音合成
