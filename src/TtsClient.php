@@ -52,7 +52,7 @@ class TtsClient
     protected $apiSecret;
 
     /**
-     * @var string 合成参数配置
+     * @var array 合成参数配置
      */
     protected $requestConfig;
 

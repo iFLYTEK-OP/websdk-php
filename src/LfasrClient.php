@@ -53,7 +53,7 @@ class LfasrClient
     protected $secretKey;
 
     /**
-     * @var string 转写参数配置
+     * @var array 转写参数配置
      */
     protected $requestConfig;
 
