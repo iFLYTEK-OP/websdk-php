@@ -10,10 +10,18 @@ composer require iflytekop/xfyun-speech
 ```
 
 ### 使用
-##### 语音合成
+#### 语音合成
+##### 合成参数
+
 ```php
 <?php
 include './vendor/autoload.php';
+
+// 设置合成参数
+$ttsConfig = [
+    'aue' => 'lame'
+    //...  
+];
 
 // 这里的$app_id、$api_key、$api_secret是在开放平台控制台获得
 $client = new IFlytek\Xfyun\Speech\SpeechClient($app_id, $api_key, $api_secret);
@@ -22,7 +30,8 @@ $client = new IFlytek\Xfyun\Speech\SpeechClient($app_id, $api_key, $api_secret);
 $content = $client->ttsRequest('欢迎使用科大讯飞语音能力，让我们一起用人工智能改变世界')->getBody()->getContents();
 ```
 
-##### 语音转写
+
+#### 语音转写
 ```php
 <?php
 include './vendor/autoload.php';
