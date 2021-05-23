@@ -26,10 +26,10 @@ $ttsConfig = [
 ];
 
 // 这里的$app_id、$api_key、$api_secret是在开放平台控制台获得
-$client = new IFlytek\Xfyun\Speech\SpeechClient($app_id, $api_key, $api_secret);
+$client = new IFlytek\Xfyun\Speech\TtsClient($app_id, $api_key, $api_secret, $ttsConfig);
 
 // 返回格式为音频文件的二进制数组，可以直接通过file_put_contents存入本地文件
-$content = $client->ttsRequest('欢迎使用科大讯飞语音能力，让我们一起用人工智能改变世界')->getBody()->getContents();
+$content = $client->request('欢迎使用科大讯飞语音能力，让我们一起用人工智能改变世界')->getBody()->getContents();
 ```
 更详细请参见[Demo](https://github.com/iFLYTEK-OP/websdk-php-demo/blob/master/TtsDemo.php)
 ##### 合成参数
