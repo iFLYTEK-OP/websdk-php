@@ -29,7 +29,7 @@ use IFlytek\Xfyun\Core\Traits\SignTrait;
  *
  * @author guizheng@iflytek.com
  */
-class TtsClient
+class IseClient
 {
     use SignTrait;
 

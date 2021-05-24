@@ -205,7 +205,7 @@ class IseConfig implements ConfigInterface
         $this->category = $config['category'];
         $this->aus = $config['aus'];
         $this->cmd = $config['cmd'];
-        $this->text = '\uFEFF' + $config['text'];
+        $this->text = '\uFEFF' . $config['text'];
         $this->tte = $config['tte'];
         $this->ttp_skip = $config['ttp_skip'];
         $this->extra_ability = $config['extra_ability'];
@@ -259,7 +259,7 @@ class IseConfig implements ConfigInterface
 
     public function setText($text)
     {
-        $this->text = '\uFEFF' + $text;
+        $this->text = '\uFEFF' . $text;
     }
 
     public function setCmd($cmd)
