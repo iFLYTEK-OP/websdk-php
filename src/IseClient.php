@@ -18,22 +18,20 @@
 
 namespace IFlytek\Xfyun\Speech;
 
-use IFlytek\Xfyun\Speech\Config\TtsConfig;
-use IFlytek\Xfyun\Speech\Constants\TtsConstants;
-use IFlytek\Xfyun\Speech\Traits\TtsTrait;
+use IFlytek\Xfyun\Speech\Config\IseConfig;
+use IFlytek\Xfyun\Speech\Constants\IseConstants;
 use IFlytek\Xfyun\Core\Handler\WsHandler;
 use IFlytek\Xfyun\Core\WsClient;
 use IFlytek\Xfyun\Core\Traits\SignTrait;
 
 /**
- * 语音合成客户端
+ * 语音评测客户端
  *
  * @author guizheng@iflytek.com
  */
 class TtsClient
 {
     use SignTrait;
-    use TtsTrait;
 
     /**
      * @var string app_id
@@ -51,7 +49,7 @@ class TtsClient
     protected $apiSecret;
 
     /**
-     * @var array 合成参数配置
+     * @var array 评测参数配置
      */
     protected $requestConfig;
 
@@ -60,30 +58,31 @@ class TtsClient
         $this->appId = $appId;
         $this->apiKey = $apiKey;
         $this->apiSecret = $apiSecret;
-        $this->requestConfig = new TtsConfig($requestConfig);
+        $this->requestConfig = new IseConfig($requestConfig);
     }
 
     /**
-     * 合成文本，并返回结果(字节数组)在Response->getBody()->getContents()
+     * 请求评测，并返回结果(字节数组)在Response->getBody()->getContents()
      *
-     * @param   string  $text   待合成的文本
+     * @param   string  $audioPath  待评测音频路径
+     * @param   string  $text       待评测文本
      * @return  GuzzleHttp/Psr7/Response
      */
-    public function request($text)
+    public function request($audioPath, $text)
     {
         $ttsHandler = new WsHandler(
-            $this->signUriV1(TtsConstants::URI, [
+            $this->signUriV1(IseConstants::URI, [
                 'appId' => $this->appId,
                 'apiKey' => $this->apiKey,
                 'apiSecret' => $this->apiSecret,
-                'host' => TtsConstants::HOST,
-                'requestLine' => TtsConstants::REQUEST_LINE,
+                'host' => IseConstants::HOST,
+                'requestLine' => IseConstants::REQUEST_LINE,
             ]),
-            $this->generateInput($text, $this->appId, $this->requestConfig->toArray())
+            NULL
         );
         $client = new WsClient([
             'handler' => $ttsHandler
         ]);
-        return $client->sendAndReceive();
+        var_dump($client);exit;
     }
 }
