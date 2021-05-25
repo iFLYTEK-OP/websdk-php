@@ -28,4 +28,5 @@ class IseConstants
     public const URI = 'wss://ise-api.xfyun.cn/v2/open-ise';
     public const HOST = 'ise-api.xfyun.cn';
     public const REQUEST_LINE = 'GET /v2/open-ise HTTP/1.1';
+    public const FRAME_SIZE = 1280;
 }

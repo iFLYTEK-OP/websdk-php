@@ -97,7 +97,7 @@ class IseConfig implements ConfigInterface
     private $tte;
 
     /**
-     * @var string 跳过ttp直接使用text中的文本进行评测
+     * @var boolean 跳过ttp直接使用text中的文本进行评测
      * true/false
      * 默认true
      */
@@ -188,7 +188,7 @@ class IseConfig implements ConfigInterface
             'cmd' => 'ssb',
             'text' => '',
             'tte' => 'utf-8',
-            'ttp_skip' => 'true',
+            'ttp_skip' => true,
             'extra_ability' => null,
             'aue' => 'raw',
             'rstcd' => 'utf8',
@@ -205,7 +205,7 @@ class IseConfig implements ConfigInterface
         $this->category = $config['category'];
         $this->aus = $config['aus'];
         $this->cmd = $config['cmd'];
-        $this->text = '\uFEFF' . $config['text'];
+        $this->text = chr(239) . chr(187) . chr(191) . $config['text'];
         $this->tte = $config['tte'];
         $this->ttp_skip = $config['ttp_skip'];
         $this->extra_ability = $config['extra_ability'];
@@ -259,16 +259,6 @@ class IseConfig implements ConfigInterface
 
     public function setText($text)
     {
-        $this->text = '\uFEFF' . $text;
-    }
-
-    public function setCmd($cmd)
-    {
-        $this->cmd = $cmd;
-    }
-
-    public function setAus($aus)
-    {
-        $this->aus = $aus;
+        $this->text = chr(239) . chr(187) . chr(191) . $text;
     }
 }

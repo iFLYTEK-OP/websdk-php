@@ -20,9 +20,11 @@ namespace IFlytek\Xfyun\Speech;
 
 use IFlytek\Xfyun\Speech\Config\IseConfig;
 use IFlytek\Xfyun\Speech\Constants\IseConstants;
+use IFlytek\Xfyun\Speech\Traits\IseTrait;
 use IFlytek\Xfyun\Core\Handler\WsHandler;
 use IFlytek\Xfyun\Core\WsClient;
 use IFlytek\Xfyun\Core\Traits\SignTrait;
+use GuzzleHttp\Psr7\Stream;
 
 /**
  * 语音评测客户端
@@ -32,6 +34,7 @@ use IFlytek\Xfyun\Core\Traits\SignTrait;
 class IseClient
 {
     use SignTrait;
+    use IseTrait;
 
     /**
      * @var string app_id
@@ -66,9 +69,9 @@ class IseClient
      *
      * @param   string  $audioPath  待评测音频路径
      * @param   string  $text       待评测文本
-     * @return  GuzzleHttp/Psr7/Response
+     * @return  string
      */
-    public function request($audioPath, $text)
+    public function request($audioPath, $text = null)
     {
         $ttsHandler = new WsHandler(
             $this->signUriV1(IseConstants::URI, [
@@ -83,6 +86,42 @@ class IseClient
         $client = new WsClient([
             'handler' => $ttsHandler
         ]);
-        var_dump($client);exit;
+
+        // 参数上传
+        if (!empty($text)) {
+            $this->requestConfig->setText($text);
+        }
+        $client->send($this->generateParamsInput($this->appId, $this->requestConfig->toArray()));
+
+        // 音频上传
+        $frameSize = ceil(fileSize($audioPath) / IseConstants::FRAME_SIZE);
+        $fileStream = new Stream(fopen($audioPath, 'r'));
+        // 发送第一帧
+        $result = $client->send($this->generateAudioInput($fileStream->read(IseConstants::FRAME_SIZE), true, false));
+        // 发送中间帧
+        for ($i = 1; $i < $frameSize - 1; $i++) {
+            $client->send($this->generateAudioInput($fileStream->read(IseConstants::FRAME_SIZE), false, false));
+            usleep(4000);
+        }
+        // 发送最后一帧
+        $client->send($this->generateAudioInput($fileStream->read(IseConstants::FRAME_SIZE), false, true));
+
+        // 接受数据
+        $result = '';
+        while (true) {
+            $message = $this->jsonDecode($client->receive());
+            if ($message->code !== 0) {
+                throw new \Exception('error receive');
+            }
+            switch ($message->data->status) {
+                case 1:
+                    $result .= base64_decode($message->data->data);
+                    break;
+                case 2:
+                    $result .= base64_decode($message->data->data);
+                    break 2;
+            }
+        }
+        return $result;
     }
 }
