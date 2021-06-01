@@ -128,7 +128,8 @@ class IseConfig implements ConfigInterface
 
     /**
      * @var string 返回结果格式
-     * utf8/gbk（默认值）
+     * utf8/gbk
+     * 默认utf8
      */
     private $rstcd;
 
@@ -190,14 +191,14 @@ class IseConfig implements ConfigInterface
             'tte' => 'utf-8',
             'ttp_skip' => true,
             'extra_ability' => null,
-            'aue' => null,
-            'rstcd' => null,
-            'group' => null,
-            'check_type' => null,
-            'grade' => null,
-            'rst' => null,
-            'ise_unite' => null,
-            'plev' => null
+            'aue' => 'raw',
+            'rstcd' => 'utf8',
+            'group' => 'adult',
+            'check_type' => 'common',
+            'grade' => 'middle',
+            'rst' => 'entirety',
+            'ise_unite' => '0',
+            'plev' => '0'
         ];
 
         $this->sub = 'ise';
