@@ -65,7 +65,7 @@ class IseClient
     }
 
     /**
-     * 请求评测，并返回结果(字节数组)在Response->getBody()->getContents()
+     * 请求评测，并返回结果（xml格式）
      *
      * @param   string  $audioPath  待评测音频路径
      * @param   string  $text       待评测文本

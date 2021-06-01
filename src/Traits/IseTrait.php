@@ -54,6 +54,14 @@ trait IseTrait
         );
     }
 
+    /**
+     * 根据音频数据、是否是第一帧、最后一帧，生成音频上传请求体
+     *
+     * @param   string  $frameData      音频数据
+     * @param   string  $isFirstFrame   是否是第一帧
+     * @param   array   $isLastFrame    是否是最后一帧
+     * @return  string
+     */
     public static function generateAudioInput($frameData, $isFirstFrame = false, $isLastFrame = false)
     {
         return self::jsonEncode(

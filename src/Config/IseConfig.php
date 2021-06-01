@@ -63,7 +63,7 @@ class IseConfig implements ConfigInterface
      *  retell（英文复述题）
      *  picture_talk（英文看图说话）
      *  oral_translation（英文口头翻译）
-     * 默认 'read_sentence'
+     * 默认read_sentence
      */
     private $category;
 
@@ -190,14 +190,14 @@ class IseConfig implements ConfigInterface
             'tte' => 'utf-8',
             'ttp_skip' => true,
             'extra_ability' => null,
-            'aue' => 'raw',
-            'rstcd' => 'utf8',
-            'group' => 'adult',
-            'check_type' => 'common',
-            'grade' => 'middle',
-            'rst' => 'entirety',
-            'ise_unite' => '0',
-            'plev' => '0'
+            'aue' => null,
+            'rstcd' => null,
+            'group' => null,
+            'check_type' => null,
+            'grade' => null,
+            'rst' => null,
+            'ise_unite' => null,
+            'plev' => null
         ];
 
         $this->sub = 'ise';
