@@ -18,7 +18,6 @@
 
 namespace IFlytek\Xfyun\Speech;
 
-use IFlytek\Xfyun\Speech\SpeechClient;
 use IFlytek\Xfyun\Speech\Config\TtsConfig;
 use IFlytek\Xfyun\Speech\Constants\TtsConstants;
 use IFlytek\Xfyun\Speech\Traits\TtsTrait;
