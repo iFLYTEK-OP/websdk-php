@@ -22,36 +22,14 @@ use IFlytek\Xfyun\Core\Traits\ArrayTrait;
 use IFlytek\Xfyun\Core\Traits\JsonTrait;
 
 /**
- * 语音评测方法
+ * 性别年龄识别方法
  *
  * @author guizheng@iflytek.com
  */
-trait IseTrait
+trait IgrTrait
 {
     use ArrayTrait;
     use JsonTrait;
-
-    /**
-     * 根据合成内容、app_id、配置参数，生成请求体
-     *
-     * @param   string  $appId          app_id
-     * @param   array   $iseConfigArray 语音合成参数，详见iseConfig
-     * @return  string
-     */
-    public static function generateParamsInput($appId, $iseConfigArray)
-    {
-        return self::jsonEncode(
-            self::removeNull([
-                'common' => [
-                    'app_id' => $appId
-                ],
-                'business' => $iseConfigArray,
-                'data' => [
-                    'status' => 0
-                ]
-            ])
-        );
-    }
 
     /**
      * 根据音频数据、是否是第一帧、最后一帧，生成音频上传请求体
@@ -61,17 +39,20 @@ trait IseTrait
      * @param   boolean $isLastFrame    是否是最后一帧
      * @return  string
      */
-    public static function generateAudioInput($frameData, $isFirstFrame = false, $isLastFrame = false)
+    public function generateAudioInput($frameData, $isFirstFrame = false, $isLastFrame = false)
     {
         return self::jsonEncode(
             self::removeNull([
-                'business' => [
-                    "cmd" => "auw",
-                    "aus" => $isFirstFrame ? 1 : ($isLastFrame ? 4 : 2)
+                "common" => !$isFirstFrame ? null : [
+                    "app_id" => $this->appId
+                ],
+                'business' => !$isFirstFrame ? null : [
+                    "aue" => $this->requestConfig->getAue(),
+                    "rate" => $this->requestConfig->getRate()
                 ],
                 'data' => [
-                    'status' => $isLastFrame ? 2 : 1,
-                    'data' => base64_encode($frameData)
+                    'status' => $isFirstFrame ? 0 : ($isLastFrame ? 2 : 1),
+                    'audio' => base64_encode($frameData)
                 ]
             ])
         );

@@ -7,14 +7,14 @@ use Symfony\Component\Yaml\Yaml;
 
 class BaseClientTest extends TestCase
 {
-    protected $ability = 'tts';
+    protected $ability = 'common';
 
     protected $config;
 
     public function setUp()
     {
         $credentials = [
-            'tts' => [
+            'common' => [
                 'appId' => getenv('PHPSDK_SPEECH_TTS_APPID'),
                 'apiKey' => getenv('PHPSDK_SPEECH_TTS_APIKEY'),
                 'apiSecret' => getenv('PHPSDK_SPEECH_TTS_APISECRET')
@@ -23,12 +23,7 @@ class BaseClientTest extends TestCase
                 'appId' => getenv('PHPSDK_SPEECH_LFASR_APPID'),
                 'secretKey' => getenv('PHPSDK_SPEECH_LFASR_SECRETKEY'),
                 'taskId' => getenv('PHPSDK_SPEECH_LFASR_TASKID')
-            ],
-            'ise' => [
-                'appId' => getenv('PHPSDK_SPEECH_TTS_APPID'),
-                'apiKey' => getenv('PHPSDK_SPEECH_TTS_APIKEY'),
-                'apiSecret' => getenv('PHPSDK_SPEECH_TTS_APISECRET')
-            ],
+            ]
         ];
         $this->config = $credentials[$this->ability];
     }

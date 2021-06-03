@@ -2,16 +2,16 @@
 <phpunit colors="true">
     <testsuites>
         <testsuite>
-        <name>UnitTest</name>
-        <directory>tests/Unit</directory>
+            <name>UnitTest</name>
+            <directory>tests/Unit</directory>
         </testsuite>
     </testsuites>
     <filter>
         <whitelist>
-        <directory suffix=".php">src</directory>
-        <exclude>
-            <directory suffix=".php">src/V[!a-zA-Z]*</directory>
-        </exclude>
+            <directory suffix=".php">src</directory>
+            <exclude>
+                <directory suffix=".php">src/V[!a-zA-Z]*</directory>
+            </exclude>
         </whitelist>
     </filter>
     <logging>
