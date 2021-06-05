@@ -9,7 +9,7 @@ class IseClientTest extends BaseClientTest
     public function __construct()
     {
         parent::__construct();
-        $this->ability = 'ise';
+        $this->ability = 'common';
     }
 
     public function testSuccessfullyRequest()

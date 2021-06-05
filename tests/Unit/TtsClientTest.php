@@ -9,7 +9,7 @@ class TtsClientTest extends BaseClientTest
     public function __construct()
     {
         parent::__construct();
-        $this->ability = 'tts';
+        $this->ability = 'common';
     }
 
     public function testSuccessfullyRequest()
