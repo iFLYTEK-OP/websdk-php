@@ -22,7 +22,7 @@ $progress = $client->getProgress($taskId)->getBody()->getContents();
 // 获取结果，json格式
 $result = $client->getResult($taskId)->getBody()->getContents();
 ```
-更详细请参见[Demo](https://github.com/iFLYTEK-OP/websdk-php-demo/blob/master/LfasrDemo.php)
+更详细请参见[Demo](https://github.com/iFLYTEK-OP/websdk-php-demo/blob/master/src/LfasrDemo.php)
 ##### 合成参数
 |参数|类型|必须|说明|示例|
 |:-------------|:-------------|:-------------|:-------------|:-------------|
