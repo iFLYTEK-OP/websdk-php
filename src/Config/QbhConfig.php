@@ -62,14 +62,14 @@ class QbhConfig implements ConfigInterface
     {
         $config += [
             'aue' => 'raw',
-            'rate' => 16000,
+            'sample_rate' => "16000",
             'audio_url' => null
         ];
 
         $this->engine_type = 'afs';
         $this->aue = $config['aue'];
         $this->sample_rate = $config['sample_rate'];
-        $this->audio_url = $config['sample_rate'];
+        $this->audio_url = $config['audio_url'];
     }
 
     /**

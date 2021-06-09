@@ -19,8 +19,11 @@
 namespace IFlytek\Xfyun\Speech;
 
 use Exception;
+use GuzzleHttp\Psr7\Request;
+use IFlytek\Xfyun\Core\HttpClient;
 use IFlytek\Xfyun\Speech\Config\QbhConfig;
 use IFlytek\Xfyun\Core\Traits\SignTrait;
+use IFlytek\Xfyun\Speech\Constants\QbhConstants;
 
 /**
  * 性别年龄识别客户端
@@ -30,7 +33,6 @@ use IFlytek\Xfyun\Core\Traits\SignTrait;
 class QbhClient
 {
     use SignTrait;
-    use QbhTrait;
 
     /**
      * @var string
@@ -62,6 +64,17 @@ class QbhClient
      */
     public function request($audioPath)
     {
-        return '';
+        $request = new Request(
+            'POST',
+            QbhConstants::URI,
+            self::signV2(
+                $this->appId,
+                $this->apiSecret,
+                $this->requestConfig->toJson()
+            ),
+            file_get_contents($audioPath)
+        );
+        $client = new HttpClient([]);
+        return $client->sendAndReceive($request)->getBody()->getContents();
     }
 }
