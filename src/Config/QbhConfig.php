@@ -36,7 +36,7 @@ class QbhConfig implements ConfigInterface
      * @var string 引擎类型
      * 仅支持afs
      */
-    private $engine_type;
+    private $engineType;
 
     /**
      * @var string 音频编码
@@ -51,12 +51,12 @@ class QbhConfig implements ConfigInterface
      * 16000/8000
      * 默认16000，aue是aac，sample_rate必须是8000
      */
-    private $sample_rate;
+    private $sampleRate;
 
     /**
      * @var string 哼唱音频存放地址url
      */
-    private $audio_url;
+    private $audioUrl;
 
     public function __construct($config)
     {
@@ -66,10 +66,10 @@ class QbhConfig implements ConfigInterface
             'audio_url' => null
         ];
 
-        $this->engine_type = 'afs';
+        $this->engineType = 'afs';
         $this->aue = $config['aue'];
-        $this->sample_rate = $config['sample_rate'];
-        $this->audio_url = $config['audio_url'];
+        $this->sampleRate = $config['sample_rate'];
+        $this->audioUrl = $config['audio_url'];
     }
 
     /**
@@ -80,10 +80,10 @@ class QbhConfig implements ConfigInterface
     public function toArray()
     {
         return $this->removeNull([
-            'engine_type' => $this->engine_type,
+            'engine_type' => $this->engineType,
             'aue' => $this->aue,
-            'sample_rate' => $this->sample_rate,
-            'audio_url' => $this->audio_url,
+            'sample_rate' => $this->sampleRate,
+            'audio_url' => $this->audioUrl,
         ]);
     }
 
