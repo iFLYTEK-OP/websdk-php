@@ -1,6 +1,6 @@
 <?php
 
-namespace IFlytek\Xfyun\Speech\Test\Unit\Config;
+namespace IFlytek\Xfyun\Speech\Tests\Unit\Speech\Config;
 
 use IFlytek\Xfyun\Speech\Config\TtsConfig;
 use IFlytek\Xfyun\Core\Traits\JsonTrait;

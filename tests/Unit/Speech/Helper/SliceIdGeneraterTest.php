@@ -1,6 +1,6 @@
 <?php
 
-namespace IFlytek\Xfyun\Speech\Tests\Unit\Helper;
+namespace IFlytek\Xfyun\Speech\Tests\Unit\Speech\Helper;
 
 use IFlytek\Xfyun\Speech\Helper\SliceIdGenerater;
 use PHPUnit\Framework\TestCase;

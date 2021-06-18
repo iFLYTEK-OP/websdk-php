@@ -81,7 +81,7 @@ class IgrClient
                 'host' => IgrConstants::HOST,
                 'requestLine' => IgrConstants::REQUEST_LINE,
             ]),
-            NULL
+            null
         );
         $client = new WsClient([
             'handler' => $ttsHandler
