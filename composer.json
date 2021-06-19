@@ -1,7 +1,7 @@
 {
-  "name": "iflytekop/xfyun",
+  "name": "iflytekop/xfyun-sdk",
   "type": "library",
-  "description": "Xfyun Speech Library",
+  "description": "Xfyun Sdk Library",
   "license": "Apache-2.0",
   "keywords": [],
   "require": {
