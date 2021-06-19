@@ -2,7 +2,6 @@
 
 /**
  * Copyright 1999-2021 iFLYTEK Corporation
-
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -67,8 +66,8 @@ class IseClient
     /**
      * 请求评测，并返回结果（xml格式）
      *
-     * @param   string  $audioPath  待评测音频路径
-     * @param   string  $text       待评测文本
+     * @param string $audioPath 待评测音频路径
+     * @param string $text 待评测文本
      * @return  string
      */
     public function request($audioPath, $text = null)

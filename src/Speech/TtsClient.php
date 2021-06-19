@@ -2,7 +2,6 @@
 
 /**
  * Copyright 1999-2021 iFLYTEK Corporation
-
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -18,6 +17,7 @@
 
 namespace IFlytek\Xfyun\Speech;
 
+use Exception;
 use IFlytek\Xfyun\Speech\Config\TtsConfig;
 use IFlytek\Xfyun\Speech\Constants\TtsConstants;
 use IFlytek\Xfyun\Speech\Traits\TtsTrait;
@@ -66,8 +66,9 @@ class TtsClient
     /**
      * 合成文本，并返回结果(字节数组)在Response->getBody()->getContents()
      *
-     * @param   string  $text   待合成的文本
-     * @return  GuzzleHttp/Psr7/Response
+     * @param string $text 待合成的文本
+     * @return \GuzzleHttp\Psr7\Response
+     * @throws Exception
      */
     public function request($text)
     {

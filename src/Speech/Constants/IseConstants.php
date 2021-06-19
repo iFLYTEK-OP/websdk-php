@@ -2,7 +2,6 @@
 
 /**
  * Copyright 1999-2021 iFLYTEK Corporation
-
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -18,15 +17,15 @@
 
 namespace IFlytek\Xfyun\Speech\Constants;
 
- /**
+/**
  * 语音评测常量
  *
  * @author guizheng@iflytek.com
  */
 class IseConstants
 {
-    public const URI = 'wss://ise-api.xfyun.cn/v2/open-ise';
-    public const HOST = 'ise-api.xfyun.cn';
-    public const REQUEST_LINE = 'GET /v2/open-ise HTTP/1.1';
-    public const FRAME_SIZE = 1280;
+    const URI = 'wss://ise-api.xfyun.cn/v2/open-ise';
+    const HOST = 'ise-api.xfyun.cn';
+    const REQUEST_LINE = 'GET /v2/open-ise HTTP/1.1';
+    const FRAME_SIZE = 1280;
 }

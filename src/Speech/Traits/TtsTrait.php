@@ -2,7 +2,6 @@
 
 /**
  * Copyright 1999-2021 iFLYTEK Corporation
-
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -34,9 +33,9 @@ trait TtsTrait
     /**
      * 根据合成内容、app_id、配置参数，生成请求体
      *
-     * @param   string  $text           带合成的文本
-     * @param   string  $appId          app_id
-     * @param   array   $ttsConfigArray 语音合成参数，详见TtsConfig
+     * @param string $text 带合成的文本
+     * @param string $appId app_id
+     * @param array $ttsConfigArray 语音合成参数，详见TtsConfig
      * @return  string
      */
     public static function generateInput($text, $appId, $ttsConfigArray)

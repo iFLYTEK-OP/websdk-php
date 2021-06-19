@@ -2,7 +2,6 @@
 
 /**
  * Copyright 1999-2021 iFLYTEK Corporation
-
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -18,6 +17,7 @@
 
 namespace IFlytek\Xfyun\Speech;
 
+use Exception;
 use IFlytek\Xfyun\Speech\Config\IgrConfig;
 use IFlytek\Xfyun\Speech\Constants\IgrConstants;
 use IFlytek\Xfyun\Speech\Traits\IgrTrait;
@@ -67,9 +67,9 @@ class IgrClient
     /**
      * 请求并返回结果
      *
-     * @param   string  $audioPath  待识别音频路径
-     * @throws  \Exception
+     * @param string $audioPath 待识别音频路径
      * @return  string
+     * @throws  Exception
      */
     public function request($audioPath)
     {
@@ -104,7 +104,7 @@ class IgrClient
         // 接受数据
         $message = $this->jsonDecode($client->receive(), true);
         if ($message['code'] !== 0) {
-            throw new \Exception('error receive');
+            throw new Exception(json_encode($message));
         }
         return $message['data'];
     }

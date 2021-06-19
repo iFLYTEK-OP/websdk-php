@@ -91,14 +91,4 @@ class IgrConfig implements ConfigInterface
     {
         return $this->jsonEncode($this->toArray());
     }
-
-    public function getAue()
-    {
-        return $this->aue;
-    }
-
-    public function getRate()
-    {
-        return $this->rate;
-    }
 }
