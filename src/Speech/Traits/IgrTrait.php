@@ -2,7 +2,6 @@
 
 /**
  * Copyright 1999-2021 iFLYTEK Corporation
-
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -22,34 +21,37 @@ use IFlytek\Xfyun\Core\Traits\ArrayTrait;
 use IFlytek\Xfyun\Core\Traits\JsonTrait;
 
 /**
- * 语音合成方法
+ * 性别年龄识别方法
  *
  * @author guizheng@iflytek.com
  */
-trait TtsTrait
+trait IgrTrait
 {
     use ArrayTrait;
     use JsonTrait;
 
     /**
-     * 根据合成内容、app_id、配置参数，生成请求体
+     * 根据音频数据、是否是第一帧、最后一帧，生成音频上传请求体
      *
-     * @param   string  $text           带合成的文本
-     * @param   string  $appId          app_id
-     * @param   array   $ttsConfigArray 语音合成参数，详见TtsConfig
+     * @param string $frameData 音频数据
+     * @param boolean $isFirstFrame 是否是第一帧
+     * @param boolean $isLastFrame 是否是最后一帧
      * @return  string
      */
-    public static function generateInput($text, $appId, $ttsConfigArray)
+    public function generateAudioInput($frameData, $isFirstFrame = false, $isLastFrame = false)
     {
         return self::jsonEncode(
             self::removeNull([
-                'common' => [
-                    'app_id' => $appId
+                "common" => !$isFirstFrame ? null : [
+                    "app_id" => $this->appId
                 ],
-                'business' => $ttsConfigArray,
+                'business' => !$isFirstFrame ? null : [
+                    "aue" => $this->requestConfig->getAue(),
+                    "rate" => $this->requestConfig->getRate()
+                ],
                 'data' => [
-                    'text' => base64_encode($text),
-                    'status' => 2
+                    'status' => $isFirstFrame ? 0 : ($isLastFrame ? 2 : 1),
+                    'audio' => base64_encode($frameData)
                 ]
             ])
         );

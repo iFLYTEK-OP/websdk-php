@@ -101,7 +101,7 @@ class IseConfig implements ConfigInterface
      * true/false
      * 默认true
      */
-    private $ttp_skip;
+    private $ttpSkip;
 
     /**
      * @var string 拓展能力（生效条件ise_unite="1", rst="entirety"）
@@ -109,7 +109,7 @@ class IseConfig implements ConfigInterface
      * 单词基频信息显示（基频开始值、结束值）：extra_ability值为pitch ，仅适用于单词和句子题型
      * 音素错误信息显示（声韵、调型是否正确）：extra_ability值为syll_phone_err_msg，字词句篇均适用,如选多个能力，用分号；隔开。例如：extra_ability=syll_phone_err_msg;pitch;multi_dimension
      */
-    private $extra_ability;
+    private $extraAbility;
 
     /**
      * @var string 音频格式
@@ -148,7 +148,7 @@ class IseConfig implements ConfigInterface
      * common：普通
      * hard：困难
      */
-    private $check_type;
+    private $checkType;
 
     /**
      * @var string 设置评测的学段参数 （仅中文题型：中小学的句子、篇章题型支持）
@@ -172,7 +172,7 @@ class IseConfig implements ConfigInterface
      * 0：不控制（默认值）
      * 1：控制（extra_ability参数将影响全维度等信息的返回）
      */
-    private $ise_unite;
+    private $iseUnite;
 
     /**
      * @var string 在rst="entirety"（默认值）且ise_unite="0"（默认值）的情况下plev的取值不同对返回结果有影响。
@@ -208,15 +208,15 @@ class IseConfig implements ConfigInterface
         $this->cmd = $config['cmd'];
         $this->text = chr(239) . chr(187) . chr(191) . $config['text'];
         $this->tte = $config['tte'];
-        $this->ttp_skip = $config['ttp_skip'];
-        $this->extra_ability = $config['extra_ability'];
+        $this->ttpSkip = $config['ttp_skip'];
+        $this->extraAbility = $config['extra_ability'];
         $this->aue = $config['aue'];
         $this->rstcd = $config['rstcd'];
         $this->group = $config['group'];
-        $this->check_type = $config['check_type'];
+        $this->checkType = $config['check_type'];
         $this->grade = $config['grade'];
         $this->rst = $config['rst'];
-        $this->ise_unite = $config['ise_unite'];
+        $this->iseUnite = $config['ise_unite'];
         $this->plev = $config['plev'];
     }
 
@@ -235,15 +235,15 @@ class IseConfig implements ConfigInterface
             'cmd' => $this->cmd,
             'text' => $this->text,
             'tte' => $this->tte,
-            'ttp_skip' => $this->ttp_skip,
-            'extra_ability' => $this->extra_ability,
+            'ttp_skip' => $this->ttpSkip,
+            'extra_ability' => $this->extraAbility,
             'aue' => $this->aue,
             'rstcd' => $this->rstcd,
             'group' => $this->group,
-            'check_type' => $this->check_type,
+            'check_type' => $this->checkType,
             'grade' => $this->grade,
             'rst' => $this->rst,
-            'ise_unite' => $this->ise_unite,
+            'ise_unite' => $this->iseUnite,
             'plev' => $this->plev
         ]);
     }

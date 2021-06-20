@@ -91,22 +91,22 @@ class LfasrConfig implements ConfigInterface
     public function __construct($config)
     {
         $config += [
-            'lfasrType' => '0',
-            'hasParticiple' => 'false',
-            'maxAlternatives' => '0',
-            'speakerNumber' => '2',
-            'hasSeperate' => 'false',
-            'roleType' => '1',
+            'lfasr_type' => '0',
+            'has_participle' => 'false',
+            'max_alternatives' => '0',
+            'speaker_number' => '2',
+            'has_seperate' => 'false',
+            'role_type' => '1',
             'language' => 'cn',
             'pd' => null
         ];
 
-        $this->lfasrType = $config['lfasrType'];
-        $this->hasParticiple = $config['hasParticiple'];
-        $this->maxAlternatives = $config['maxAlternatives'];
-        $this->speakerNumber = $config['speakerNumber'];
-        $this->hasSeperate = $config['hasSeperate'];
-        $this->roleType = $config['roleType'];
+        $this->lfasrType = $config['lfasr_type'];
+        $this->hasParticiple = $config['has_participle'];
+        $this->maxAlternatives = $config['max_alternatives'];
+        $this->speakerNumber = $config['speaker_number'];
+        $this->hasSeperate = $config['has_seperate'];
+        $this->roleType = $config['role_type'];
         $this->language = $config['language'];
         $this->pd = $config['pd'];
     }
