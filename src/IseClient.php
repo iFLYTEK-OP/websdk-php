@@ -81,7 +81,7 @@ class IseClient
                 'host' => IseConstants::HOST,
                 'requestLine' => IseConstants::REQUEST_LINE,
             ]),
-            NULL
+            null
         );
         $client = new WsClient([
             'handler' => $ttsHandler
@@ -111,7 +111,7 @@ class IseClient
         while (true) {
             $message = $this->jsonDecode($client->receive());
             if ($message->code !== 0) {
-                throw new \Exception('error receive');
+                throw new \Exception(json_encode($message));
             }
             switch ($message->data->status) {
                 case 1:
