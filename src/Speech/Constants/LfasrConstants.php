@@ -2,7 +2,6 @@
 
 /**
  * Copyright 1999-2021 iFLYTEK Corporation
-
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -25,11 +24,11 @@ namespace IFlytek\Xfyun\Speech\Constants;
  */
 class LfasrConstants
 {
-    public const URI_PREPARE = 'https://raasr.xfyun.cn/api/prepare';
-    public const URI_UPLOAD = 'https://raasr.xfyun.cn/api/upload';
-    public const URI_MERGE = 'https://raasr.xfyun.cn/api/merge';
-    public const URI_GET_PROGRESS = 'https://raasr.xfyun.cn/api/getProgress';
-    public const URI_GET_RESULT = 'https://raasr.xfyun.cn/api/getResult';
-    public const SLICE_PIECE_SIZE = 1024 * 1024 * 10;
-    public const ORIGIN_SLICE_ID = 'aaaaaaaaaa';
+    const URI_PREPARE = 'https://raasr.xfyun.cn/api/prepare';
+    const URI_UPLOAD = 'https://raasr.xfyun.cn/api/upload';
+    const URI_MERGE = 'https://raasr.xfyun.cn/api/merge';
+    const URI_GET_PROGRESS = 'https://raasr.xfyun.cn/api/getProgress';
+    const URI_GET_RESULT = 'https://raasr.xfyun.cn/api/getResult';
+    const SLICE_PIECE_SIZE = 1024 * 1024 * 10;
+    const ORIGIN_SLICE_ID = 'aaaaaaaaaa';
 }

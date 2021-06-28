@@ -2,7 +2,6 @@
 
 /**
  * Copyright 1999-2021 iFLYTEK Corporation
-
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -18,15 +17,15 @@
 
 namespace IFlytek\Xfyun\Speech\Constants;
 
- /**
- * 语音评测常量
+/**
+ * 性别年龄识别常量
  *
  * @author guizheng@iflytek.com
  */
-class IseConstants
+class IgrConstants
 {
-    public const URI = 'wss://ise-api.xfyun.cn/v2/open-ise';
-    public const HOST = 'ise-api.xfyun.cn';
-    public const REQUEST_LINE = 'GET /v2/open-ise HTTP/1.1';
-    public const FRAME_SIZE = 1280;
+    const URI = 'wss://ws-api.xfyun.cn/v2/igr';
+    const HOST = 'ws-api.xfyun.cn';
+    const REQUEST_LINE = 'GET /v2/igr HTTP/1.1';
+    const FRAME_SIZE = 1280;
 }

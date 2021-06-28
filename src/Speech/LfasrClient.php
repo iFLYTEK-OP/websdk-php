@@ -2,7 +2,6 @@
 
 /**
  * Copyright 1999-2021 iFLYTEK Corporation
-
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -18,10 +17,11 @@
 
 namespace IFlytek\Xfyun\Speech;
 
+use Exception;
 use IFlytek\Xfyun\Speech\Config\LfasrConfig;
 use IFlytek\Xfyun\Speech\Constants\LfasrConstants;
 use IFlytek\Xfyun\Speech\Traits\LfasrTrait;
-use IFlytek\Xfyun\Speech\Helper\SliceIdGenerater;
+use IFlytek\Xfyun\Speech\Helper\SliceIdGenerator;
 use IFlytek\Xfyun\Core\Traits\SignTrait;
 use IFlytek\Xfyun\Core\Traits\JsonTrait;
 use IFlytek\Xfyun\Core\HttpClient;
@@ -80,8 +80,9 @@ class LfasrClient
     /**
      * 打包上传接口，封装了准备、分片上传和合并三个接口，并返回task_id
      *
-     * @param   string  $filePath   文件路径
+     * @param string $filePath 文件路径
      * @return  string
+     * @throws Exception
      */
     public function combineUpload($filePath)
     {
@@ -96,8 +97,9 @@ class LfasrClient
     /**
      * 准备接口
      *
-     * @param   string  $filePath   文件路径
-     * @return  GuzzleHttp/Psr7/Response
+     * @param $file_path
+     * @return  Response
+     * @throws Exception
      */
     public function prepare($file_path)
     {
@@ -118,13 +120,14 @@ class LfasrClient
     /**
      * 分片上传接口
      *
-     * @param   string  $taskId     task_id
-     * @param   string  $filePath   文件路径
-     * @return  GuzzleHttp/Psr7/Response
+     * @param string $taskId task_id
+     * @param string $filePath 文件路径
+     * @return  Response
+     * @throws Exception
      */
     public function upload($taskId, $filePath)
     {
-        $sliceIdGenerater = new SliceIdGenerater();
+        $sliceIdGenerator = new SliceIdGenerator();
         $sliceInfo = $this->sliceInfo($filePath);
         $fileStream = new Stream(fopen($filePath, 'r'));
 
@@ -157,7 +160,7 @@ class LfasrClient
                 ],
                 [
                     'name' => 'slice_id',
-                    'contents' => $sliceIdGenerater->getId()
+                    'contents' => $sliceIdGenerator->getId()
                 ],
                 [
                     'name' => 'content',
@@ -166,7 +169,7 @@ class LfasrClient
                 ]
             ]);
 
-            $result = $this->client->sendAndReceive(
+            $this->client->sendAndReceive(
                 $request->withBody($multipartStream)
             );
         }
@@ -176,8 +179,8 @@ class LfasrClient
     /**
      * 合并接口
      *
-     * @param   string  $taskId     task_id
-     * @return  GuzzleHttp/Psr7/Response
+     * @param string $taskId task_id
+     * @return  Response
      */
     public function merge($taskId)
     {
@@ -187,8 +190,8 @@ class LfasrClient
     /**
      * 查询进度接口
      *
-     * @param   string  $taskId     task_id
-     * @return  GuzzleHttp/Psr7/Response
+     * @param string $taskId task_id
+     * @return  Response
      */
     public function getProgress($taskId)
     {
@@ -198,8 +201,8 @@ class LfasrClient
     /**
      * 获取结果接口
      *
-     * @param   string  $taskId     task_id
-     * @return  GuzzleHttp/Psr7/Response
+     * @param string $taskId task_id
+     * @return  Response
      */
     public function getResult($taskId)
     {
@@ -209,9 +212,9 @@ class LfasrClient
     /**
      * 封装操作
      *
-     * @param   string  $task       操作
-     * @param   string  $taskId     task_id
-     * @return  GuzzleHttp/Psr7/Response
+     * @param string $task 操作
+     * @param string $taskId task_id
+     * @return  Response
      */
     private function process($task, $taskId)
     {

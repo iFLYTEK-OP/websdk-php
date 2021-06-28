@@ -2,7 +2,6 @@
 
 /**
  * Copyright 1999-2021 iFLYTEK Corporation
-
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -18,14 +17,14 @@
 
 namespace IFlytek\Xfyun\Speech\Constants;
 
- /**
+/**
  * 语音合成常量
  *
  * @author guizheng@iflytek.com
  */
 class TtsConstants
 {
-    public const URI = 'wss://tts-api.xfyun.cn/v2/tts';
-    public const HOST = 'tts-api.xfyun.cn';
-    public const REQUEST_LINE = 'GET /v2/tts HTTP/1.1';
+    const URI = 'wss://tts-api.xfyun.cn/v2/tts';
+    const HOST = 'tts-api.xfyun.cn';
+    const REQUEST_LINE = 'GET /v2/tts HTTP/1.1';
 }

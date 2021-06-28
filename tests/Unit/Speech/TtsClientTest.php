@@ -1,6 +1,6 @@
 <?php
 
-namespace IFlytek\Xfyun\Speech\Tests\Unit;
+namespace IFlytek\Xfyun\Speech\Tests\Unit\Speech;
 
 use IFlytek\Xfyun\Speech\TtsClient;
 

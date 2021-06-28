@@ -2,7 +2,6 @@
 
 /**
  * Copyright 1999-2021 iFLYTEK Corporation
-
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -18,23 +17,23 @@
 
 namespace IFlytek\Xfyun\Speech;
 
-use IFlytek\Xfyun\Speech\Config\IgrConfig;
-use IFlytek\Xfyun\Speech\Constants\IgrConstants;
-use IFlytek\Xfyun\Speech\Traits\IgrTrait;
+use Exception;
+use IFlytek\Xfyun\Speech\Config\TtsConfig;
+use IFlytek\Xfyun\Speech\Constants\TtsConstants;
+use IFlytek\Xfyun\Speech\Traits\TtsTrait;
 use IFlytek\Xfyun\Core\Handler\WsHandler;
 use IFlytek\Xfyun\Core\WsClient;
 use IFlytek\Xfyun\Core\Traits\SignTrait;
-use GuzzleHttp\Psr7\Stream;
 
 /**
- * 性别年龄识别客户端
+ * 语音合成客户端
  *
  * @author guizheng@iflytek.com
  */
-class IgrClient
+class TtsClient
 {
     use SignTrait;
-    use IgrTrait;
+    use TtsTrait;
 
     /**
      * @var string app_id
@@ -52,7 +51,7 @@ class IgrClient
     protected $apiSecret;
 
     /**
-     * @var IgrConfig
+     * @var array 合成参数配置
      */
     protected $requestConfig;
 
@@ -61,51 +60,31 @@ class IgrClient
         $this->appId = $appId;
         $this->apiKey = $apiKey;
         $this->apiSecret = $apiSecret;
-        $this->requestConfig = new IgrConfig($requestConfig);
+        $this->requestConfig = new TtsConfig($requestConfig);
     }
 
     /**
-     * 请求并返回结果
+     * 合成文本，并返回结果(字节数组)在Response->getBody()->getContents()
      *
-     * @param   string  $audioPath  待识别音频路径
-     * @throws  \Exception
-     * @return  string
+     * @param string $text 待合成的文本
+     * @return \GuzzleHttp\Psr7\Response
+     * @throws Exception
      */
-    public function request($audioPath)
+    public function request($text)
     {
         $ttsHandler = new WsHandler(
-            $this->signUriV1(IgrConstants::URI, [
+            $this->signUriV1(TtsConstants::URI, [
                 'appId' => $this->appId,
                 'apiKey' => $this->apiKey,
                 'apiSecret' => $this->apiSecret,
-                'host' => IgrConstants::HOST,
-                'requestLine' => IgrConstants::REQUEST_LINE,
+                'host' => TtsConstants::HOST,
+                'requestLine' => TtsConstants::REQUEST_LINE,
             ]),
-            NULL
+            $this->generateInput($text, $this->appId, $this->requestConfig->toArray())
         );
         $client = new WsClient([
             'handler' => $ttsHandler
         ]);
-
-        // 音频上传
-        $frameNum = ceil(fileSize($audioPath) / IgrConstants::FRAME_SIZE);
-        $fileStream = new Stream(fopen($audioPath, 'r'));
-        // 发送第一帧
-        $client->send($this->generateAudioInput($fileStream->read(IgrConstants::FRAME_SIZE), true, false));
-
-        // 发送中间帧
-        for ($i = 1; $i < $frameNum; $i++) {
-            $client->send($this->generateAudioInput($fileStream->read(IgrConstants::FRAME_SIZE), false, false));
-            usleep(4000);
-        }
-        // 发送最后一帧
-        $client->send($this->generateAudioInput('', false, true));
-
-        // 接受数据
-        $message = $this->jsonDecode($client->receive(), true);
-        if ($message['code'] !== 0) {
-            throw new \Exception('error receive');
-        }
-        return $message['data'];
+        return $client->sendAndReceive();
     }
 }

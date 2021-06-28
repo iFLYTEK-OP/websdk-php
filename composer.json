@@ -1,28 +1,30 @@
 {
-    "name": "iflytekop/xfyun-speech",
-    "type": "library",
-    "description": "Xfyun Speech Library",
-    "license": "Apache-2.0",
-    "keywords": [],
-    "require": {
-        "php": ">=7.1",
-        "guzzlehttp/guzzle": "^6.0|^7.0",
-        "guzzlehttp/psr7": "^1.2",
-        "psr/http-message": "1.0.*",
-        "iflytekop/xfyun-core": "^1.0"
-    },
-    "require-dev": {
-        "phpunit/phpunit": "^6.5",
-        "wowo-zz/php-cc": "^1.0"
-    },
-    "autoload": {
-        "psr-4": {
-            "IFlytek\\Xfyun\\Speech\\": "src"
-        }
-    },
-    "autoload-dev": {
-        "psr-4": {
-            "IFlytek\\Xfyun\\Speech\\Tests\\": "tests"
-        }
+
+  "name": "iflytekop/xfyun-sdk",
+  "type": "library",
+  "description": "Xfyun Sdk Library",
+  "license": "Apache-2.0",
+  "keywords": [],
+  "require": {
+    "php": ">=7.0",
+    "guzzlehttp/guzzle": "^6.0|^7.0",
+    "guzzlehttp/psr7": "^1.2",
+    "psr/http-message": "1.0.*",
+    "iflytekop/xfyun-core": "^1.0",
+    "ext-json": "*"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^6.5",
+    "wowo-zz/php-cc": "^1.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "IFlytek\\Xfyun\\Speech\\": "src/Speech"
     }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "IFlytek\\Xfyun\\Speech\\Tests\\": "tests"
+    }
+  }
 }
