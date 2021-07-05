@@ -18,19 +18,12 @@
 namespace IFlytek\Xfyun\Speech;
 
 use Exception;
-use IFlytek\Xfyun\Speech\Config\LfasrConfig;
-use IFlytek\Xfyun\Speech\Constants\LfasrConstants;
 use IFlytek\Xfyun\Speech\Constants\LtpConstants;
-use IFlytek\Xfyun\Speech\Traits\LfasrTrait;
-use IFlytek\Xfyun\Speech\Helper\SliceIdGenerator;
 use IFlytek\Xfyun\Core\Traits\SignTrait;
 use IFlytek\Xfyun\Core\Traits\JsonTrait;
 use IFlytek\Xfyun\Core\HttpClient;
 use GuzzleHttp\Psr7\Request;
-use GuzzleHttp\Psr7\Response;
 use GuzzleHttp\Psr7\Query;
-use GuzzleHttp\Psr7\Stream;
-use GuzzleHttp\Psr7\MultipartStream;
 
 /**
  * 词法分析客户端
