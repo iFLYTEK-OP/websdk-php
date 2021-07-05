@@ -18,6 +18,7 @@
 namespace IFlytek\Xfyun\Speech;
 
 use Exception;
+use GuzzleHttp\Psr7\Response;
 use IFlytek\Xfyun\Speech\Constants\LtpConstants;
 use IFlytek\Xfyun\Core\Traits\SignTrait;
 use IFlytek\Xfyun\Core\Traits\JsonTrait;
@@ -27,6 +28,7 @@ use GuzzleHttp\Psr7\Query;
 
 /**
  * 词法分析客户端
+ * https://www.xfyun.cn/doc/nlp/semanticDependence/API.html#%E6%8E%A5%E5%8F%A3%E8%AF%B7%E6%B1%82%E5%8F%82%E6%95%B0
  *
  * @author guizheng@iflytek.com
  */
@@ -41,14 +43,9 @@ class LtpClient
     protected $appId;
 
     /**
-     * @var string secret_key
+     * @var string api_key
      */
     protected $apiKey;
-
-    /**
-     * @var array 转写参数配置
-     */
-    protected $requestConfig;
 
     /** @var HttpClient */
     protected $client;
@@ -59,17 +56,24 @@ class LtpClient
     /** @var array 初始化请求体 */
     protected $requestBody;
 
-    public function __construct($appId, $apiKey, $requestConfig = [])
+    public function __construct($appId, $apiKey)
     {
         $this->appId = $appId;
         $this->apiKey = $apiKey;
         $this->client = new HttpClient([]);
         $timestamp = time();
-        $this->requestHeaders = $this->signV2($appId, $apiKey, self::jsonEncode(['type' => 'dependent']), $timestamp);
+        $param = self::jsonEncode(['type' => 'dependent']);
+        $this->requestHeaders = $this->signV2($appId, $apiKey, $param, $timestamp);
         $this->requestBody = [];
     }
 
-    public function request($func, $text)
+    /**
+     * @param $func string 词法分析模块名，
+     * @param $text string 待分析文本，长度限制为500字节(中文简体)
+     * @return Response
+     * @throws Exception
+     */
+    public function request(string $func, string $text): Response
     {
         if (!in_array($func, LtpConstants::FUNC)) {
             throw new Exception("不支持的词法分析模块");
