@@ -30,7 +30,7 @@ use GuzzleHttp\Psr7\Query;
  * 词法分析客户端
  * https://www.xfyun.cn/doc/nlp/semanticDependence/API.html#%E6%8E%A5%E5%8F%A3%E8%AF%B7%E6%B1%82%E5%8F%82%E6%95%B0
  *
- * @author guizheng@iflytek.com
+ * @author xinxiong2@iflytek.com
  */
 class LtpClient
 {
