@@ -18,3 +18,6 @@ composer require iflytekop/xfyun-sdk
     - [语音转写](https://github.com/iFLYTEK-OP/websdk-php-speech/blob/master/doc/speech/LFASR.md)
     - [语音评测](https://github.com/iFLYTEK-OP/websdk-php-speech/blob/master/doc/speech/ISE.md)
     - [性别年龄识别](https://github.com/iFLYTEK-OP/websdk-php-speech/blob/master/doc/speech/IGR.md)
+
+### Demo
+[Demo](https://github.com/iFLYTEK-OP/websdk-php-demo)
