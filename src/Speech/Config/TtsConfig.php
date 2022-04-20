@@ -119,6 +119,12 @@ class TtsConfig implements ConfigInterface
      */
     private $rdn;
 
+    /**
+     * @var string 自定义发音人引擎
+     * 默认传 ptts
+     */
+    private $ent;
+
     public function __construct($config = [])
     {
         $config += [
@@ -132,7 +138,8 @@ class TtsConfig implements ConfigInterface
             'bgs' => 0,
             'tte' => 'UTF8',
             'reg' => '2',
-            'rdn' => '0'
+            'rdn' => '0',
+            'ent' => ''
         ];
 
         $this->aue = $config['aue'];
@@ -146,6 +153,7 @@ class TtsConfig implements ConfigInterface
         $this->tte = $config['tte'];
         $this->reg = $config['reg'];
         $this->rdn = $config['rdn'];
+        $this->ent = $config['ent'];
     }
 
     /**
@@ -166,7 +174,8 @@ class TtsConfig implements ConfigInterface
             'bgs' => $this->bgs,
             'tte' => $this->tte,
             'reg' => $this->reg,
-            'rdn' => $this->rdn
+            'rdn' => $this->rdn,
+            'ent' => $this->ent
         ]);
     }
 
