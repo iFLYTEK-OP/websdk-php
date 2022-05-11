@@ -4,14 +4,22 @@
 <?php
 include './vendor/autoload.php';
 
+use IFlytek\Xfyun\Speech\TtsClient;
+use Monolog\Handler\StreamHandler;
+use Monolog\Logger;
+
 // 设置合成参数
 $ttsConfig = [
     'aue' => 'lame'
     //...  
 ];
 
+// $logger是psr3的日志实例，需要打印日志可以传入，缺省为null，此项为v2.0.1之后可用
+$logger = new Logger('TTSLOG');
+$logger->pushHandler(new StreamHandler(__DIR__.'/tts.log', Logger::DEBUG));
+
 // 这里的$app_id、$api_key、$api_secret是在开放平台控制台获得
-$client = new IFlytek\Xfyun\Speech\TtsClient($app_id, $api_key, $api_secret, $ttsConfig);
+$client = new IFlytek\Xfyun\Speech\TtsClient($app_id, $api_key, $api_secret, $ttsConfig, $logger);
 
 // 返回格式为音频文件的二进制数组，可以直接通过file_put_contents存入本地文件
 $content = $client->request('欢迎使用科大讯飞语音能力，让我们一起用人工智能改变世界')->getBody()->getContents();
