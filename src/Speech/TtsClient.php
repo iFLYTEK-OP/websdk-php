@@ -24,6 +24,7 @@ use IFlytek\Xfyun\Speech\Traits\TtsTrait;
 use IFlytek\Xfyun\Core\Handler\WsHandler;
 use IFlytek\Xfyun\Core\WsClient;
 use IFlytek\Xfyun\Core\Traits\SignTrait;
+use Psr\Log\LoggerInterface;
 
 /**
  * 语音合成客户端
@@ -55,12 +56,18 @@ class TtsClient
      */
     protected $requestConfig;
 
-    public function __construct($appId, $apiKey, $apiSecret, $requestConfig = [])
+    /**
+     * @var LoggerInterface or null 日志处理
+     */
+    protected $logger;
+
+    public function __construct($appId, $apiKey, $apiSecret, $requestConfig = [], $logger = null)
     {
         $this->appId = $appId;
         $this->apiKey = $apiKey;
         $this->apiSecret = $apiSecret;
         $this->requestConfig = new TtsConfig($requestConfig);
+        $this->logger = $logger;
     }
 
     /**
@@ -82,6 +89,9 @@ class TtsClient
             ]),
             $this->generateInput($text, $this->appId, $this->requestConfig->toArray())
         );
+        if ($this->logger) {
+            $ttsHandler->setLogger($this->logger);
+        }
         $client = new WsClient([
             'handler' => $ttsHandler
         ]);
