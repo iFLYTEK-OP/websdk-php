@@ -3,6 +3,8 @@
 namespace IFlytek\Xfyun\Speech\Tests\Unit\Speech;
 
 use IFlytek\Xfyun\Speech\TtsClient;
+use Monolog\Handler\StreamHandler;
+use Monolog\Logger;
 
 class TtsClientTest extends BaseClientTest
 {
@@ -14,11 +16,15 @@ class TtsClientTest extends BaseClientTest
 
     public function testSuccessfullyRequest()
     {
+
+        $logger = new Logger('my_logger');
+        $logger->pushHandler(new StreamHandler(__DIR__.'/unit.test.log', Logger::DEBUG));
         $client = new TtsClient(
             $this->config['appId'],
             $this->config['apiKey'],
             $this->config['apiSecret'],
-            []
+            [],
+            $logger
         );
         $result = $client->request('爱我中华');
         $this->assertArrayHasKey('appId', $this->config);

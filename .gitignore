@@ -12,6 +12,7 @@ credentials.yml
 tests/output
 coverageOutput
 clover.xml
+*.log
 
 # vscode
 .vscode/
