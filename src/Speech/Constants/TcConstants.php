@@ -25,6 +25,7 @@ namespace IFlytek\Xfyun\Speech\Constants;
 class TcConstants
 {
     const URI = 'https://api.xf-yun.com/v1/private/s9a87e3ec';
+    const LIST_UPLOAD_URI = 'https://evo-gen.xfyun.cn/individuation/gen/upload';
     const HOST = 'api.xf-yun.com';
     const REQUEST_LINE = 'POST /v1/private/s9a87e3ec HTTP/1.1';
 }
