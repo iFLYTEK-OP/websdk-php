@@ -23,6 +23,10 @@ class BaseClientTest extends TestCase
                 'appId' => getenv('PHPSDK_SPEECH_LFASR_APPID'),
                 'secretKey' => getenv('PHPSDK_SPEECH_LFASR_SECRETKEY'),
                 'taskId' => getenv('PHPSDK_SPEECH_LFASR_TASKID')
+            ],
+            'qbh' => [
+                'appId' => getenv('PHPSDK_SPEECH_TTS_APPID'),
+                'apiSecret' => getenv('PHPSDK_CORE_QBH_SECRETKEY')
             ]
         ];
         $this->config = $credentials[$this->ability];
